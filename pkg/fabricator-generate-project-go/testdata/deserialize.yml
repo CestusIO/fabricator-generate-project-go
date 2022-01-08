@@ -1,0 +1,7 @@
+apiVersion: fabricator.cestus.io/v1alpha1
+kind: Config
+components:
+- name: "fabricator-generate-project-go"
+  generator: fabricator-generate-project-go
+  spec:
+    exampleValue: "fabricator-generate-project-go"
