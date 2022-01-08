@@ -8,6 +8,7 @@ import (
 	"context"
 	"os"
 
+	_ "code.cestus.io/tools/fabricator-generate-project-go"
 	fabricatorgenerateprojectgo "code.cestus.io/tools/fabricator-generate-project-go/pkg/fabricator-generate-project-go"
 	"code.cestus.io/tools/fabricator/pkg/cmd/version"
 	"code.cestus.io/tools/fabricator/pkg/fabricator"

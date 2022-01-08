@@ -14,7 +14,9 @@ import (
 
 // Spec contains the specification for the plugin
 type Spec struct {
-	ExampleValue string `yaml:"exampleValue" json:"exampleValue"`
+	GoModule string `yaml:"goModule" json:"goModule"`
+	RepoURL  string `yaml:"repoURL" json:"repoURL"`
+	Minimal  bool   `yaml:"minimal" json:"minimal"`
 }
 
 // region CODE_REGION(PLUGIN_COMPONENT)

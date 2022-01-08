@@ -5,6 +5,7 @@ components:
     generator: fabricator-generate-project-go
     spec:
       goModule: code.cestus.io/tools/fabricator-generate-project-go
+      repoURL: https://gitlab.com/cestus/fabricator/fabricator-generate-project-go
   - name: "fabricator-generate-project-go"
     generator: fabricator-generate-plugin-go
     spec:

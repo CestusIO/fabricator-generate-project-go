@@ -26,7 +26,9 @@ var _ = Describe("Config", func() {
 					Name:      "fabricator-generate-project-go",
 					Generator: "fabricator-generate-project-go",
 					Spec: fabricatorgenerateprojectgo.Spec{
-						ExampleValue: "fabricator-generate-project-go",
+						GoModule: "code.cestus.io/testvalue",
+						Minimal:  false,
+						RepoURL:  "code.cestus.io/repo",
 					},
 				},
 			},
