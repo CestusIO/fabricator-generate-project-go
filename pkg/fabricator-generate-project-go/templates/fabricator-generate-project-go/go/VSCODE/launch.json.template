@@ -1,0 +1,19 @@
+!!if not .PluginComponent.Spec.Minimal
+!!pathreplace VSCODE .vscode
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${fileDirname}",
+            //"program": "${workspaceFolder}/path",
+            "env": {
+            },
+            "envFile": "${workspaceFolder}/.env",
+            "args": []
+        }
+    ]
+}

@@ -1,0 +1,13 @@
+!!if not .PluginComponent.Spec.Minimal
+!!filename  .gitignore
+// region CODE_REGION(Common)
+bin/
+.vscode/
+.devcontainer/devcontainer.json
+.devcontainer/Dockerfile
+*.coverprofile
+.env
+tools/bin
+__debug_bin
+buildhelper.tmp
+// endregion

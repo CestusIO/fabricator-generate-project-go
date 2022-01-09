@@ -1,0 +1,9 @@
+{{ CodeSectionFileHeader | ToGoComment }}
+// region CODE_REGION(name)
+module {{.PluginComponent.Spec.GoModule}}
+
+go 1.17
+// endregion
+
+
+
