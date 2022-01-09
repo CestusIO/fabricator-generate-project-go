@@ -7,3 +7,6 @@ components:
       goModule: "code.cestus.io/testvalue"
       repoURL: "code.cestus.io/repo"
       minimal: false
+      isLib: true
+      isService: true
+      isTool: true

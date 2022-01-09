@@ -14,9 +14,12 @@ import (
 
 // Spec contains the specification for the plugin
 type Spec struct {
-	GoModule string `yaml:"goModule" json:"goModule"`
-	RepoURL  string `yaml:"repoURL" json:"repoURL"`
-	Minimal  bool   `yaml:"minimal" json:"minimal"`
+	GoModule  string `yaml:"goModule" json:"goModule"`
+	RepoURL   string `yaml:"repoURL" json:"repoURL"`
+	Minimal   bool   `yaml:"minimal" json:"minimal"`
+	IsLib     bool   `yaml:"isLib" json:"isLib"`
+	IsService bool   `yaml:"isService" json:"isService"`
+	IsTool    bool   `yaml:"isTool" json:"isTool"`
 }
 
 // region CODE_REGION(PLUGIN_COMPONENT)

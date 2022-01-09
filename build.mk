@@ -20,5 +20,6 @@ svermakerBuildVersion   ?=
 export GOPRIVATE        := code.cestus.io
 # default docker version 
 svermakerHelmLabel 	    ?= unreleased
+goModuleBuildVersion    ?= unreleased
 # additional LDFGLAGS (e.g. -w -s)
 ADDITIONALLDFLAGS       ?= 

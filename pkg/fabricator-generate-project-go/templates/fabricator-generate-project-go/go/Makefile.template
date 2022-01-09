@@ -127,7 +127,7 @@ test:
 .PHONY: changelog
 changelog:
 	$(call msg, --> Generating changelog)
-	git-chglog --next-tag $(svermakerHelmLabel) 1> /dev/null && ([ $$? -eq 0 ] && git-chglog --next-tag $(svermakerHelmLabel) -o CHANGELOG.md) || echo "changelog failure!"
+	git-chglog --next-tag $(goModuleBuildVersion) 1> /dev/null && ([ $$? -eq 0 ] && git-chglog --next-tag $(goModuleBuildVersion) -o CHANGELOG.md) || echo "changelog failure!"
 
 # Plonk the following at the end of your Makefile
 .DEFAULT_GOAL := show-help
