@@ -2,6 +2,7 @@
 !!filename  .gitignore
 // region CODE_REGION(Common)
 bin/
+dist/
 .vscode/
 .devcontainer/devcontainer.json
 .devcontainer/Dockerfile
