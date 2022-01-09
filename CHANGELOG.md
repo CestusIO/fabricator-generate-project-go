@@ -6,7 +6,11 @@ It is generated with git-chglog -o CHANGELOG.md
 
 
 <a name="0.0.1-rc"></a>
-## 0.0.1-rc 
+## [0.0.1-rc](https://gitlab.com/cestus/fabricator/fabricator-generate-project-go/compare/v0.0.0...0.0.1-rc) 
+
+
+<a name="v0.0.0"></a>
+## v0.0.0 
 
 ### Feat
 
