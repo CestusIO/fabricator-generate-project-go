@@ -52,7 +52,7 @@ export LDFLAGS
 # building platform string
 b_platform = --> Building $(APP)-$(GOOS)-$(GOARCH)\n
 # building platform command
-b_command = export GOOS=$(GOOS); export GOARCH=$(GOARCH); go build -ldflags "$(LDFLAGS) -X go.scout.ubisoft.com/libs/scout/pkg/buildinfo.name=$(APP)" -o $(BINDIR)/$(APP)-$(GOOS)-$(GOARCH)$(BINARY_$(GOOS)_ENDING) ./cmd/$(APP)/ ;
+b_command = export GOOS=$(GOOS); export GOARCH=$(GOARCH); go build -ldflags "$(LDFLAGS) -X code.cestus.io/libs/pkg/buildinfo.name=$(APP)" -o $(BINDIR)/$(APP)-$(GOOS)-$(GOARCH)$(BINARY_$(GOOS)_ENDING) ./cmd/$(APP)/ ;
 # for each iterations use build message
 fb_platforms =$(foreach GOOS, $(PLATFORMS),$(foreach GOARCH, $(ARCHITECTURES),$(foreach APP, $(APPLICATIONS),$(b_platform))))
 # foreach iterations to do multi platform build
@@ -117,16 +117,16 @@ compile_absolute_everything:
 
 .PHONY: test
 ## Runs the tests
-test:
+test: install_tools
 	for dir in $(ALL_GO_MOD_DIRS); do \
 	echo "ginkgo $${dir}/..."; \
 	(cd "$${dir}" && \
-		export CGO_ENABLED=1; ginkgo -race -cover -coverprofile=cover.coverprofile -outputdir=. ./...); \
+		export CGO_ENABLED=1; ginkgo -race -cover -coverprofile=cover.coverprofile --output-dir=. ./...); \
 	done; 
 .PHONY: changelog
 changelog:
 	$(call msg, --> Generating changelog)
-	git-chglog --next-tag $(svermakerHelmLabel) 1> /dev/null && ([ $$? -eq 0 ] && git-chglog --next-tag $(svermakerHelmLabel) -o CHANGELOG.md) || echo "changelog failure!"
+	git-chglog --next-tag $(goModuleBuildVersion) 1> /dev/null && ([ $$? -eq 0 ] && git-chglog --next-tag $(goModuleBuildVersion) -o CHANGELOG.md) || echo "changelog failure!"
 
 # Plonk the following at the end of your Makefile
 .DEFAULT_GOAL := show-help

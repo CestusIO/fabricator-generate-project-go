@@ -5,15 +5,15 @@ include:
   - project: "cestus/ci/gitlab-ci"
     file: /pipeline/golang/libv2.yml
     ref: master
-{{ end }}
+{{ end -}}
 {{ if .PluginComponent.Spec.IsService }}
   - project: "cestus/ci/gitlab-ci"
     file: /pipeline/golang/servicev2.yml
     ref: master
-{{ end }}
+{{ end -}}
 {{ if .PluginComponent.Spec.IsTool }}
   - project: "cestus/ci/gitlab-ci"
     file: /pipeline/golang/tool.yml
     ref: master
-{{ end }}
+{{ end -}}
 # endregion

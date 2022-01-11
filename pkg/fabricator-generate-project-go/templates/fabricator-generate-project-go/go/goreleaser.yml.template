@@ -1,4 +1,5 @@
 !!if not .PluginComponent.Spec.Minimal
+!!if .PluginComponent.Spec.IsTool
 !!filename  .goreleaser.yml
 !!delimiters [[ ]]
 # region CODE_REGION(ci)
