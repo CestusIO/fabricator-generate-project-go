@@ -1,5 +1,7 @@
-!!if not .PluginComponent.Spec.Minimal
+!!if (not .PluginComponent.Spec.Minimal)
 !!pathreplace DEVCONTAINER .devcontainer
+!!delimiters [[ ]]
+[[ CodeSectionFileHeader | ToGoComment ]]
 {
 	"name": "Go",
 	"build": {

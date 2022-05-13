@@ -1,3 +1,2 @@
 !!if (not .PluginComponent.Spec.Minimal)
-current: 0.0.1-rc
-next: 0.0.1
+!!pathreplace GITHUB .github

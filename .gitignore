@@ -5,8 +5,10 @@ dist/
 .devcontainer/devcontainer.json
 .devcontainer/Dockerfile
 *.coverprofile
+*.log
 .env
 tools/bin
 __debug_bin
 buildhelper.tmp
+.github/actions/
 // endregion

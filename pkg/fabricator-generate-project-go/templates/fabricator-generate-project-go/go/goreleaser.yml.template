@@ -1,5 +1,4 @@
-!!if not .PluginComponent.Spec.Minimal
-!!if .PluginComponent.Spec.IsTool
+!!if (not .PluginComponent.Spec.Minimal) .PluginComponent.Spec.IsTool
 !!filename  .goreleaser.yml
 !!delimiters [[ ]]
 # region CODE_REGION(ci)
@@ -7,9 +6,10 @@
 # Make sure to check the documentation at http://goreleaser.com
 before:
   hooks:
+    - make install_tools
     - go generate ./...
 builds:
-  - main: ./cmd/[[ .PluginComponent.Name ]]/main.go
+  - main: ./cmd/[[ .PluginComponent.Name ]]
     goos:
       - linux
     goarch:
@@ -18,11 +18,11 @@ builds:
     goarm:
       - "7"
     ldflags:
-      - -X code.cestus.io/tools/fabricator/pkg/genericclioptions.version={{ .Env.svermakerBuildVersion}}
+      - -X code.cestus.io/tools/fabricator/pkg/genericclioptions.version={{ .Env.BUILD_VERSION}}
       - -X code.cestus.io/tools/fabricator/pkg/genericclioptions.buildDate={{ .CommitDate }}
       - -X code.cestus.io/tools/fabricator/pkg/genericclioptions.name=[[ .PluginComponent.Name ]]
 gomod:
-  proxy: true
+  proxy: false
   env:
     - GOPROXY=https://proxy.golang.org,direct
     - GOSUMDB=sum.golang.org

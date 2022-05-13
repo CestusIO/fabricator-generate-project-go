@@ -12,8 +12,8 @@ import (
 
 	"code.cestus.io/libs/codegenerator/pkg/templating"
 
+	"code.cestus.io/libs/buildinfo"
 	"code.cestus.io/tools/fabricator/pkg/fabricator"
-	"code.cestus.io/tools/fabricator/pkg/genericclioptions"
 	"code.cestus.io/tools/fabricator/pkg/helpers"
 )
 
@@ -35,18 +35,39 @@ func (p *plugin) GoModule() string {
 	return p.goModule
 }
 
-func (p *plugin) generationContexts(ctx context.Context, io fabricator.IOStreams) ([]interface{}, error) {
-	var contexts []interface{}
+// region CODE_REGION(GENERATION_CONTEXT)
+type GenerationContext struct {
+	CodeGenerator       buildinfo.BuildInfo
+	GoModule            string
+	PluginComponent     PluginComponent
+	PinDependencies     PinDependencies
+	ReplaceDependencies ReplaceDependencies
+	ToolDependencies    ToolDependencies
+	// endregion
+}
+
+func (p *plugin) generationContexts(ctx context.Context, io fabricator.IOStreams) ([]GenerationContext, error) {
+	var contexts []GenerationContext
 	for _, component := range p.pluginConfig.Components {
-		contexts = append(contexts, &struct {
-			CodeGenerator   genericclioptions.BuildInfo
-			GoModule        string
-			PluginComponent PluginComponent
-		}{
-			CodeGenerator:   genericclioptions.GetVersion(),
-			GoModule:        p.GoModule(),
-			PluginComponent: component,
-		})
+		gencontext := GenerationContext{
+			CodeGenerator:       buildinfo.ProvideBuildInfo(),
+			GoModule:            p.GoModule(),
+			PluginComponent:     component,
+			PinDependencies:     DefaultPins,
+			ReplaceDependencies: DefaultReplacements,
+			ToolDependencies:    DefaultToolDependencies,
+		}
+		// override defaults if necessary
+		for k, o := range component.Spec.PinDependency {
+			gencontext.PinDependencies[k] = o
+		}
+		for k, o := range component.Spec.ReplaceDependency {
+			gencontext.ReplaceDependencies[k] = o
+		}
+		for k, o := range component.Spec.ToolDependency {
+			gencontext.ToolDependencies[k] = o
+		}
+		contexts = append(contexts, gencontext)
 	}
 
 	return contexts, nil
@@ -57,7 +78,9 @@ func (p *plugin) Generate(ctx context.Context, io fabricator.IOStreams, patterns
 	if err != nil {
 		return fmt.Errorf("failed to generate template contexts for %s: %s", PluginName, err)
 	}
-
+	var extGen [][]string
+	var genCmds [][]string
+	executor := helpers.NewExecutor(p.Root(), io)
 	for _, genCtx := range genCtxs {
 		templates, err := p.pack.LoadTemplates()
 		if err != nil {
@@ -68,21 +91,42 @@ func (p *plugin) Generate(ctx context.Context, io fabricator.IOStreams, patterns
 			return fmt.Errorf("failed to generate template for %s: %s", PluginName, err)
 		}
 
-		executor := helpers.NewExecutor(p.Root(), io)
 		for _, generatedFile := range generatedFiles {
-
 			generatedFile, _ = filepath.Rel(p.Root(), generatedFile)
 			fmt.Fprintf(io.Out, "%s\n", generatedFile)
 		}
-		if err = executor.Run(ctx, "go", "mod", "tidy"); err != nil {
-			fmt.Fprintf(io.Out, "go mod tidy failed: %s\n", err.Error())
+
+		for _, v := range genCtx.PinDependencies {
+			extGen = append(extGen, []string{"go", "mod", "edit", "--require", fmt.Sprintf("%s@%s", v.Name, v.Version)})
 		}
-		for _, generationCommand := range generationCommands {
+		for _, v := range genCtx.ReplaceDependencies {
+			extGen = append(extGen, []string{"go", "mod", "edit", "--replace", fmt.Sprintf("%s=%s", v.Name, v.With)})
+		}
+
+		genCmds = append(genCmds, generationCommands...)
+	}
+	for _, generationCommand := range extGen {
+		if err = executor.Run(ctx, generationCommand[0], generationCommand[1:]...); err != nil {
+			return fmt.Errorf("failed to run template generation commands for project: %s", err)
+		}
+	}
+	if err = executor.Run(ctx, "go", "mod", "tidy", "-compat=1.17"); err != nil {
+		fmt.Fprintf(io.Out, "go mod tidy failed: %s\n", err.Error())
+	}
+	// format files first so we dont run into generation failures
+	for _, generationCommand := range genCmds {
+		if generationCommand[0] == "goimports" {
 			if err = executor.Run(ctx, generationCommand[0], generationCommand[1:]...); err != nil {
 				return fmt.Errorf("failed to run template generation commands for project: %s", err)
 			}
 		}
 	}
+	for _, generationCommand := range genCmds {
+		if err = executor.Run(ctx, generationCommand[0], generationCommand[1:]...); err != nil {
+			return fmt.Errorf("failed to run template generation commands for project: %s", err)
+		}
+	}
+
 	return nil
 }
 

@@ -5,6 +5,7 @@
 package main
 
 import (
+	// region CODE_REGION(import)
 	"context"
 	"os"
 
@@ -13,6 +14,7 @@ import (
 	"code.cestus.io/tools/fabricator/pkg/cmd/version"
 	"code.cestus.io/tools/fabricator/pkg/fabricator"
 	"code.cestus.io/tools/fabricator/pkg/helpers"
+	// endregion
 )
 
 func main() {

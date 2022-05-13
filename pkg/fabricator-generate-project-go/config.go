@@ -12,8 +12,34 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
+type PinDependency struct {
+	Name    string `yaml:"name" json:"name"`
+	Version string `yaml:"version" json:"version"`
+}
+
+type ToolDependency struct {
+	Name string `yaml:"name" json:"name"`
+}
+
+type PinDependencies map[string]PinDependency
+
+type ReplaceDependencies map[string]ReplaceDependency
+
+type ToolDependencies map[string]ToolDependency
+
+type ReplaceDependency struct {
+	Name string `yaml:"name" json:"name"`
+	With string `yaml:"with" json:"with"`
+}
+
 // Spec contains the specification for the plugin
 type Spec struct {
+	PluginName string `yaml:"pluginName" json:"pluginName"`
+
+	PinDependency     PinDependencies     `yaml:"pinDependency,omitempty" json:"pinDependency,omitempty"`
+	ReplaceDependency ReplaceDependencies `yaml:"replaceDependency,omitempty" json:"replaceDependency,omitempty"`
+	ToolDependency    ToolDependencies    `yaml:"toolDependency,omitempty" json:"toolDependency,omitempty"`
+
 	GoModule  string `yaml:"goModule" json:"goModule"`
 	RepoURL   string `yaml:"repoURL" json:"repoURL"`
 	Minimal   bool   `yaml:"minimal" json:"minimal"`

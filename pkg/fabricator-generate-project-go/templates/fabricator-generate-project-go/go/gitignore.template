@@ -1,4 +1,4 @@
-!!if not .PluginComponent.Spec.Minimal
+!!if (not .PluginComponent.Spec.Minimal)
 !!filename  .gitignore
 // region CODE_REGION(Common)
 bin/
@@ -8,7 +8,9 @@ dist/
 .devcontainer/Dockerfile
 *.coverprofile
 .env
+*.log
 tools/bin
 __debug_bin
 buildhelper.tmp
+.github/actions/
 // endregion

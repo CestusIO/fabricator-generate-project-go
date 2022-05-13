@@ -1,4 +1,4 @@
-!!if not .PluginComponent.Spec.Minimal
+!!if (not .PluginComponent.Spec.Minimal)
 !!pathreplace VSCODE .vscode
 {
     "version": "0.2.0",
@@ -9,7 +9,7 @@
             "request": "launch",
             "mode": "auto",
             "program": "${fileDirname}",
-            //"program": "${workspaceFolder}/path",
+            //"program": "${workspaceFolder}/cmd",
             "env": {
             },
             "envFile": "${workspaceFolder}/.env",

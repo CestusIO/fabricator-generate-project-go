@@ -1,4 +1,4 @@
-!!if not .PluginComponent.Spec.Minimal
+!!if (not .PluginComponent.Spec.Minimal)
 !!pathreplace CHGLOG .chglog
 # region CODE_REGION(changelog)
 style: gitlab
@@ -8,22 +8,26 @@ info:
   repository_url: {{.PluginComponent.Spec.RepoURL}}
 options:
   commits:
-    # filters:
-    #   Type:
-    #     - feat
-    #     - fix
-    #     - perf
-    #     - refactor
+  # filters:
+  #   Type:
+  #     - feat
+  #     - fix
+  #     - perf
+  #     - refactor
+  #     - chore
   commit_groups:
-    # title_maps:
-    #   feat: Features
-    #   fix: Bug Fixes
-    #   perf: Performance Improvements
-    #   refactor: Code Refactoring
+    title_maps:
+      feat: Features
+      fix: Bug Fixes
+      perf: Performance Improvements
+      refactor: Code Refactoring
+      chore: Chores
+      ci: CI
   header:
-    pattern: "^(\\w*)\\:\\s(.*)$"
+    pattern: "^(\\w*)(?:\\(([\\w\\$\\.\\-\\*\\s]*)\\))?\\:\\s(.*)$"
     pattern_maps:
       - Type
+      - Scope
       - Subject
   notes:
     keywords:

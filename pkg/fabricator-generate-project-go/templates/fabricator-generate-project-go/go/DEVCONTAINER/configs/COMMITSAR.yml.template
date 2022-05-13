@@ -1,0 +1,12 @@
+!!if (not .PluginComponent.Spec.Minimal)
+!!pathreplace DEVCONTAINER .devcontainer
+!!filename  .commitsar.yml
+!!delimiters [[ ]]
+[[ CodeSectionFileHeader | ToYAMLComment ]]
+# region CODE_REGION(CI)
+version: 1
+verbose: false
+commits:
+  strict: true
+  upstreamBranch: origin/main
+# endregion
