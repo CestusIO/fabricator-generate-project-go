@@ -1,4 +1,4 @@
-!!if not .PluginComponent.Spec.Minimal
+!!if (not .PluginComponent.Spec.Minimal)
 !!filename .gitattributes
 # We want all code and template files in this repo to use LF line endings.
 *.c         text eol=lf

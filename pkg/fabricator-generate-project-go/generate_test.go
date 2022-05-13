@@ -11,27 +11,27 @@ import (
 	"code.cestus.io/libs/codegenerator/pkg/templating"
 	"code.cestus.io/tools/fabricator-generate-project-go/pkg/fabricator-generate-project-go/templates"
 	"code.cestus.io/tools/fabricator/pkg/fabricator"
-	"github.com/onsi/ginkgo/v2"
-	"github.com/onsi/gomega"
+	. "github.com/onsi/ginkgo/v2"
+	. "github.com/onsi/gomega"
 )
 
-var _ = ginkgo.Describe("Generation", func() {
-	ginkgo.It("Generates", func() {
+var _ = Describe("Generation", func() {
+	It("Generates", func() {
 		ctx := context.Background()
 		packProvider := templating.NewPackProvider()
 		packProvider.RegisterProvider(templating.NewEmbededPackProvider(templates.GetTemplates()))
 		io := fabricator.NewTestIOStreamsDiscard()
 		file, err := os.Open("./testdata/deserialize.yml")
-		gomega.Expect(err).ToNot(gomega.HaveOccurred())
+		Expect(err).ToNot(HaveOccurred())
 		config, err := LoadPluginConfig(file)
-		gomega.Expect(err).ToNot(gomega.HaveOccurred())
+		Expect(err).ToNot(HaveOccurred())
 		root, err := os.MkdirTemp("./testdata", "generation")
-		gomega.Expect(err).ToNot(gomega.HaveOccurred())
+		Expect(err).ToNot(HaveOccurred())
 		plugin, err := newPlugin(ctx, io, config, root, packProvider)
-		gomega.Expect(err).ToNot(gomega.HaveOccurred())
+		Expect(err).ToNot(HaveOccurred())
 		err = plugin.Generate(ctx, io)
-		gomega.Expect(err).ToNot(gomega.HaveOccurred())
+		Expect(err).ToNot(HaveOccurred())
 		err = os.RemoveAll(root)
-		gomega.Expect(err).ToNot(gomega.HaveOccurred())
+		Expect(err).ToNot(HaveOccurred())
 	})
 })

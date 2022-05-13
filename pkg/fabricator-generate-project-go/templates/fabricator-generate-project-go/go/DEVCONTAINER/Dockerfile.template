@@ -1,6 +1,8 @@
-!!if not .PluginComponent.Spec.Minimal
+!!if (not .PluginComponent.Spec.Minimal)
 !!pathreplace DEVCONTAINER .devcontainer
+!!delimiters [[ ]]
 
+[[ CodeSectionFileHeader | ToYAMLComment ]]
 FROM registry.gitlab.com/cestus/ci/runner-go:latest
 
 ARG USERNAME=vscode

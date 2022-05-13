@@ -1,7 +1,28 @@
 
-= Templates
+= fabricator-generate-project-go
 
-You can add templates into this Folder. 
+This is a fabricator plugin to generate a project for a golang application 
 
-This file also serves as an embedded file to prevent a "nothing to embed" error in new generation plugins
+It can be used like the following
+
+[source, yaml]
+----
+apiVersion: fabricator.cestus.io/v1alpha1
+kind: Config
+components:
+  - name: "fabricator-generate-project-go"
+    generator: fabricator-generate-project-go
+    spec:
+      goModule: "code.cestus.io/testvalue"
+      repoURL: "code.cestus.io/repo"
+      minimal: false # <1> <2>
+      isLib: true # <3>
+      isService: true # <4>
+      isTool: true # <5>
+----
+<1> set of exclusive config flags
+<2> minimal: no ci, vscode helpers
+<3> for libraries
+<4> for Domainservices
+<5> for a tool (cli application)
 

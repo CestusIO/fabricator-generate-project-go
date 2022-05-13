@@ -68,6 +68,7 @@ func (o *options) run(ctx context.Context) error {
 	if err != nil {
 		return err
 	}
+	defer f.Close()
 	config, err := LoadPluginConfig(f)
 	if err != nil {
 		return err
@@ -75,7 +76,6 @@ func (o *options) run(ctx context.Context) error {
 	// endregion
 	fmt.Fprintf(o.Out, "Loading from %s\n", path)
 
-	fmt.Fprintf(o.Out, "Loading from %s\n", path)
 	templating.CodeGeneratorName = PluginName
 	packProvider := templating.NewPackProvider()
 	packProvider.RegisterProvider(templating.NewEmbededPackProvider(templates.GetTemplates()))

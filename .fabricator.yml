@@ -1,14 +1,22 @@
 apiVersion: fabricator.cestus.io/v1alpha1
 kind: Config
 components:
-  - name: "fabricator-generate-project-go"
-    generator: fabricator-generate-project-go
-    spec:
-      goModule: code.cestus.io/tools/fabricator-generate-project-go
-      repoURL: https://gitlab.com/cestus/fabricator/fabricator-generate-project-go
-      isTool: true
-  - name: "fabricator-generate-project-go"
-    generator: fabricator-generate-plugin-go
-    spec:
-      pluginName: fabricator-generate-project-go
-      isGenerationPlugin: true
+  # - name: fabricator-generate-project-go
+  #   generator: fabricator-generate-go
+  #   spec:
+  #     packageName: fabricator-generate-project-go
+  ##
+  ## Chicken and egg problem. Do not generate yourself. Since this is a ci nightmare
+  ## CI would use the last version and then complain that there are generartion diffs
+  ##
+  # - name: fabricator-generate-project-go
+  #   generator: fabricator-generate-project-go
+  #   spec:
+  #     goModule:  code.cestus.io/tools/fabricator-generate-project-go
+  #     repoURL: https:// code.cestus.io/tools/fabricator-generate-project-go
+  #     isTool: true
+  # - name: fabricator-generate-project-go
+  #   generator: fabricator-generate-plugin-go
+  #   spec:
+  #     pluginName: fabricator-generate-project-go
+  #     isGenerationPlugin: true

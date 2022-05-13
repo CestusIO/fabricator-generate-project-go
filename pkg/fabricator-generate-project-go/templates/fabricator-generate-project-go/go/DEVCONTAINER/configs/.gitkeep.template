@@ -1,2 +1,3 @@
-!!if not .PluginComponent.Spec.Minimal
+!!if (not .PluginComponent.Spec.Minimal)
 !!pathreplace DEVCONTAINER .devcontainer
+[[ CodeSectionFileHeader | ToYAMLComment ]]
