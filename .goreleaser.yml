@@ -3,9 +3,10 @@
 # Make sure to check the documentation at http://goreleaser.com
 before:
   hooks:
+    - make install_tools
     - go generate ./...
 builds:
-  - main: ./cmd/fabricator-generate-project-go/main.go
+  - main: ./cmd/fabricator-generate-project-go
     goos:
       - linux
     goarch:

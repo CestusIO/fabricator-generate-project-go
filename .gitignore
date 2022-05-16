@@ -5,8 +5,8 @@ dist/
 .devcontainer/devcontainer.json
 .devcontainer/Dockerfile
 *.coverprofile
-*.log
 .env
+*.log
 tools/bin
 __debug_bin
 buildhelper.tmp

@@ -8,6 +8,12 @@ It assumes the use of [conventional commits](https://www.conventionalcommits.org
 ## [Unreleased]
 
 
+<a name="v0.0.5-rc"></a>
+## [v0.0.5-rc]
+### CI
+- reenable generation After releasing initial packages of generators on github this is possible
+
+
 <a name="v0.0.4"></a>
 ## [v0.0.4]
 ### Features
@@ -52,7 +58,8 @@ It assumes the use of [conventional commits](https://www.conventionalcommits.org
 - Merge branch 'init' into 'main'
 
 
-[Unreleased]: https://code.cestus.io/tools/fabricator-generate-project-go/compare/v0.0.4...HEAD
+[Unreleased]: https://code.cestus.io/tools/fabricator-generate-project-go/compare/v0.0.5-rc...HEAD
+[v0.0.5-rc]: https://code.cestus.io/tools/fabricator-generate-project-go/compare/v0.0.4...v0.0.5-rc
 [v0.0.4]: https://code.cestus.io/tools/fabricator-generate-project-go/compare/v0.0.3...v0.0.4
 [v0.0.3]: https://code.cestus.io/tools/fabricator-generate-project-go/compare/v0.0.2...v0.0.3
 [v0.0.2]: https://code.cestus.io/tools/fabricator-generate-project-go/compare/v0.0.1...v0.0.2
