@@ -8,6 +8,12 @@ It assumes the use of [conventional commits](https://www.conventionalcommits.org
 ## [Unreleased]
 
 
+<a name="v0.0.6"></a>
+## [v0.0.6]
+### Features
+- regen with itself to fix up all improvements
+
+
 <a name="v0.0.5"></a>
 ## [v0.0.5]
 ### CI
@@ -61,7 +67,8 @@ It assumes the use of [conventional commits](https://www.conventionalcommits.org
 - Merge branch 'init' into 'main'
 
 
-[Unreleased]: https://code.cestus.io/tools/fabricator-generate-project-go/compare/v0.0.5...HEAD
+[Unreleased]: https://code.cestus.io/tools/fabricator-generate-project-go/compare/v0.0.6...HEAD
+[v0.0.6]: https://code.cestus.io/tools/fabricator-generate-project-go/compare/v0.0.5...v0.0.6
 [v0.0.5]: https://code.cestus.io/tools/fabricator-generate-project-go/compare/v0.0.4...v0.0.5
 [v0.0.4]: https://code.cestus.io/tools/fabricator-generate-project-go/compare/v0.0.3...v0.0.4
 [v0.0.3]: https://code.cestus.io/tools/fabricator-generate-project-go/compare/v0.0.2...v0.0.3
