@@ -7,17 +7,18 @@ on:
   push:
     tags:
       - "*"
-
-env:
-  # Golang version to use across CI steps
-  GOLANG_VERSION: "1.18"
+permissions:
+  contents: read
+  pull-requests: write
 
 jobs:
   build-go:
     name: Build
-    uses: CestusIO/actions/.github/workflows/golang-tag.yml@main
+    uses: UmanaiaCI/actions/.github/workflows/golang-tag.yml@main
     with:
       actions-ref: main
+      #can be forced
+      #go-version: "~1.20"
     secrets:
       token: ${{ secrets.CI_TOKEN }}
 # endregion
