@@ -24,3 +24,5 @@ export GOPRIVATE        := code.cestus.io/*
 
 # additional LDFGLAGS (e.g. -w -s)
 ADDITIONALLDFLAGS       ?= 
+
+ADDITIONAL_CI_STEPS ?= 

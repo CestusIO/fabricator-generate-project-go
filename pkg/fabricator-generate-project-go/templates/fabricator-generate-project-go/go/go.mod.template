@@ -2,7 +2,7 @@
 // region CODE_REGION(name)
 module {{.PluginComponent.Spec.GoModule}}
 
-go 1.18
+go 1.21
 // endregion
 
 
