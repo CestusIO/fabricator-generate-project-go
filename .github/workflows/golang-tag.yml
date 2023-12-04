@@ -14,7 +14,7 @@ permissions:
 jobs:
   build-go:
     name: Build
-    uses: UmanaiaCI/actions/.github/workflows/golang-tag.yml@main
+    uses: CestusIO/actions/.github/workflows/golang-tag.yml@main
     with:
       actions-ref: main
       #can be forced
