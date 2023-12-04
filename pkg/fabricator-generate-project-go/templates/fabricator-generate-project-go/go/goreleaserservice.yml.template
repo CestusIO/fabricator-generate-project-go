@@ -1,4 +1,4 @@
-!!if (not .PluginComponent.Spec.Minimal) .PluginComponent.Spec.IsTool
+!!if (not .PluginComponent.Spec.Minimal) .PluginComponent.Spec.IsService
 !!filename  .goreleaser.yml
 !!delimiters [[ ]]
 [[ CodeSectionFileHeader | ToYAMLComment ]]
