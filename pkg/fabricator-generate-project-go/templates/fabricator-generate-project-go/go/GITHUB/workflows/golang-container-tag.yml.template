@@ -1,9 +1,9 @@
-!!if (not .PluginComponent.Spec.Minimal) (not .PluginComponent.Spec.IsLib)
+!!if (not .PluginComponent.Spec.Minimal) ( .PluginComponent.Spec.IsService)
 !!pathreplace GITHUB .github
 !!delimiters [[ ]]
 [[ CodeSectionFileHeader | ToYAMLComment ]]
 # region CODE_REGION(CI)
-name: ci-build_tag
+name: ci-container_tag
 on:
   push:
     tags:
@@ -11,15 +11,18 @@ on:
 permissions:
   contents: read
   pull-requests: write
+  packages: write
+  actions: write
 
 jobs:
   build-go:
     name: Build
-    uses: UmanaiaCI/actions/.github/workflows/golang-tag.yml@main
+    uses: CestusIO/actions/.github/workflows/golang-container-tag.yml@main
     with:
       actions-ref: main
       #can be forced
-      #go-version: "~1.20"
+      #go-version: "~1.18"
+      container-name: [[ .PluginComponent.Name ]]
     secrets:
       token: ${{ secrets.CI_TOKEN }}
 # endregion
