@@ -1,4 +1,6 @@
 !!if (not .PluginComponent.Spec.Minimal)
+{{ CodeSectionFileHeader | ToYAMLComment }}
+
 # -----------------------------------------------------------------------------
 # DEFINES
 # -----------------------------------------------------------------------------
@@ -14,7 +16,11 @@ APP 					:=
 # List of applications to build (must reside in ./cmd/<name>)
 APPLICATIONS            := 
 # Buildtime of a version will be passed as ldflag to go compiler
-VERSION_DATE            ?= $(shell date -u +'%Y-%m-%dT%H:%M:%SZ')
+ifeq ($(OS),Windows_NT)
+    VERSION_DATE := $(shell powershell -Command "Get-Date -Format o")
+else
+    VERSION_DATE := $(shell date -u +'%Y-%m-%dT%H:%M:%SZ')
+endif
 # Default version
 svermakerBuildVersion   ?= unreleased
 svermakerHelmLabel 	    ?= unreleased
